@@ -33,12 +33,14 @@ from tensorflow.keras import layers, models
 
 
 Carregar o dataset Cachorros e gatos:
+
 dataset, info = tfds.load("cats_vs_dogs", with_info=True, as_supervised=True)
 train = dataset["train"]
 
 
 
 Preparar as imagens (aqui ele vai ajustar as imagens):
+
 IMG_SIZE = 160
 BATCH = 32
 
@@ -51,6 +53,7 @@ train = train.map(preparar).batch(BATCH)
 
 
 Transfer Learning (aqui vai carregar aquivos pre- treinados):
+
 base = tf.keras.applications.MobileNetV2(
     input_shape=(IMG_SIZE, IMG_SIZE, 3),
     include_top=False,
@@ -62,6 +65,7 @@ base.trainable = False
 
 
 Criar o modelo final( configuraçoes padroes):
+
 modelo = models.Sequential( [ base, layers.GlobalAveragePooling2D(), layers.Dense(1, activation='sigmoid')])
 modelo.compile(
     optimizer='adam',
@@ -71,6 +75,7 @@ modelo.compile(
 
 
 Treinamentos ( aqui é a quantidade de epocas que ele ira trinar):
+
 modelo.fit(train, epochs=3)
 
 
