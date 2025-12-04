@@ -90,3 +90,7 @@ img = np.expand_dims(img, axis=0)
 pred = modelo.predict(img)[0]
 
 print("Cachorro 🐶" if pred > 0.5 else "Gato 🐱")
+
+
+fernando leme.
+fernandopl@myyahoo.com
